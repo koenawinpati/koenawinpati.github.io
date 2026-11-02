@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Focus Timer — Support</title>
+<meta name="description" content="Support for Focus Timer, a free iPhone app for meditation, study, and work-break sessions with gentle checkpoint bells.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  body.ft-theme{--accent:#4B4068;--gold:#8FA888;--bead:#8FA888}
+  @media (prefers-color-scheme:dark){
+    body.ft-theme{--accent:#C9BFE0;--gold:#A9C2A3;--bead:#A9C2A3}
+  }
+  .breathe-ring{position:relative;width:96px;height:96px;margin:0 auto 22px}
+  .breathe-ring-core{
+    position:absolute;inset:18px;border-radius:50%;
+    background:color-mix(in srgb, var(--accent) 70%, transparent);
+    animation:breathe 4.4s ease-in-out infinite;
+  }
+  .breathe-ring-line{
+    position:absolute;inset:0;border-radius:50%;
+    border:2px solid color-mix(in srgb, var(--bead) 55%, transparent);
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(.72);opacity:.75}
+    50%{transform:scale(1);opacity:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .breathe-ring-core{animation:none;transform:scale(.88)}
+  }
+</style>
+</head>
+<body class="ft-theme">
+<main>
+<nav><a href="index.html" aria-current="page">Support</a><a href="privacy.html">Privacy Policy</a></nav>
+
+<div class="hero">
+<div class="breathe-ring" aria-hidden="true">
+  <span class="breathe-ring-line"></span>
+  <span class="breathe-ring-core"></span>
+</div>
+<h1>Focus Timer</h1>
+<p class="tagline">A calm, free timer for meditation, studying, and focused work. Set your time, and a gentle bell checks in with you at each interval — no clock-watching required.</p>
+</div>
+
+<div class="card">
+<h2>Contact</h2>
+<p>Questions, problems or ideas? Write to <a href="mailto:smellofrainb4rain@gmail.com">smellofrainb4rain@gmail.com</a>.</p>
+</div>
+
+<div class="card">
+<h2>Common questions</h2>
+<h2>What timer modes are there?</h2>
+<p><strong>Intervals</strong> for a simple total-length-and-bell-interval session, <strong>Work / rest</strong> for alternating focus and break blocks, <strong>Custom</strong> for a specific sequence of blocks you define, and <strong>Builder</strong> for assembling your own session piece by piece.</p>
+<h2>Can I change the checkpoint sound?</h2>
+<p>Yes. Choose from the built-in single/double/triple beep, import your own audio file, or import the audio track straight from a video — all under Settings. You can always reset back to the default.</p>
+<h2>Can I use my own photos as the background?</h2>
+<p>Yes. Add one or more of your own photos under Settings to replace the default animated background with a slideshow, and set how long each photo stays on screen. Reset to default brings back the original animation at any time.</p>
+<h2>What happens if I close the app or restart my phone mid-session?</h2>
+<p>Focus Timer picks up where you left off, using your phone's own clock to catch up on any time that passed while it wasn't open.</p>
+<h2>How do reminders and goals work?</h2>
+<p>The Reminders tab lets you schedule notifications to start a session. The Goals tab tracks a weekly target and credits it automatically when a session completes.</p>
+<h2>Does the app cost anything?</h2>
+<p>No. Focus Timer is free, with no account, no ads, and no in-app purchases.</p>
+</div>
+
+<footer>Focus Timer &middot; Requires iOS 15 or later &middot; iPhone</footer>
+</main>
+</body>
+</html>
