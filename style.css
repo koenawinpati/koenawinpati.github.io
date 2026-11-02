@@ -1,13 +1,38 @@
 :root{
   --ground:#EDEAE3;--card:#F6F4EE;--ink:#2E2A22;--muted:#6E6558;
   --accent:#7B1113;--gold:#C9962E;--bead:#C9962E;--line:#D9D4C9;
-  --shadow1:#C7C1B4;--shadow2:#FFFFFF
+  --shadow1:#C7C1B4;--shadow2:#FFFFFF;
+
+  /* --- shared tokens: 8pt spacing rhythm, ~1.25 modular type scale.
+     New pages (the hub) should build on these instead of one-off values;
+     existing per-app pages keep their own already-shipped rules as-is. --- */
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;
+  --space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;--space-9:96px;
+  --text-1:.875rem;--text-2:1rem;--text-3:1.25rem;--text-4:1.6rem;
+  --text-5:2rem;--text-6:2.75rem;
+  --radius-card:26px;
+  --shadow-card:8px 8px 18px var(--shadow1),-8px -8px 18px var(--shadow2)
 }
 @media (prefers-color-scheme:dark){
   :root{
     --ground:#201C18;--card:#2A2520;--ink:#EDE7DC;--muted:#A79D8D;
     --accent:#E8C46A;--gold:#E8C46A;--bead:#E8C46A;--line:#3C352C;
     --shadow1:#161310;--shadow2:#302B25
+  }
+}
+
+/* --- studio theme: the shared hub's own neutral palette, independent of
+   any one app's accent (see body.ft-theme etc. on each app's own pages) --- */
+body.studio-theme{
+  --ground:#F3F0E8;--card:#FFFDF8;--ink:#201D17;--muted:#6B6456;
+  --accent:#2F5233;--gold:#B08A3E;--bead:#B08A3E;--line:#E3DDCE;
+  --shadow1:#D8D2C2;--shadow2:#FFFFFF
+}
+@media (prefers-color-scheme:dark){
+  body.studio-theme{
+    --ground:#16140F;--card:#211E17;--ink:#EEE9DD;--muted:#9C9484;
+    --accent:#8FBF95;--gold:#D8B872;--bead:#D8B872;--line:#332E23;
+    --shadow1:#0D0C09;--shadow2:#2A261D
   }
 }
 *{box-sizing:border-box}
@@ -22,6 +47,7 @@ main{max-width:720px;margin:0 auto;padding:36px 18px 64px}
 nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 nav a{font-weight:600;text-decoration:none;color:var(--muted);letter-spacing:.02em;font-size:.95rem}
 nav a[aria-current="page"]{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 
 /* --- hero --- */
 .hero{text-align:center;margin-bottom:8px}
@@ -96,3 +122,58 @@ a{color:var(--accent)}
 ul{padding-left:1.2em}
 
 footer{margin-top:32px;color:var(--muted);font-size:.9rem;text-align:center}
+
+/* ================= hub (shared multi-app homepage) ================= */
+
+.hub-main{max-width:960px}
+
+.hub-hero{text-align:center;padding:var(--space-7) 0 var(--space-6)}
+.hub-hero h1{
+  font-size:var(--text-6);line-height:1.15;margin:0 0 var(--space-3);
+  color:var(--ink);letter-spacing:-.02em;font-weight:800
+}
+.hub-hero p{
+  font-size:var(--text-3);color:var(--muted);max-width:52ch;
+  margin:0 auto;line-height:1.6
+}
+
+.apps-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:var(--space-6);margin:var(--space-6) 0 var(--space-8)
+}
+
+.app-card{
+  background:var(--card);border-radius:var(--radius-card);
+  box-shadow:var(--shadow-card);padding:var(--space-6);
+  display:flex;flex-direction:column;gap:var(--space-3)
+}
+.app-card-head{display:flex;align-items:center;gap:var(--space-4)}
+.app-card-icon{
+  width:64px;height:64px;border-radius:22%;flex:none;
+  box-shadow:0 2px 6px rgba(0,0,0,.18);object-fit:cover
+}
+.app-card-head h2{margin:0;font-size:var(--text-4);line-height:1.25;color:var(--ink)}
+.app-card-tagline{color:var(--muted);font-size:var(--text-1);margin-top:2px}
+.app-card p.app-card-pitch{font-size:var(--text-2);line-height:1.6;color:var(--ink);margin:0}
+
+.app-card-tags{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.tag{
+  font-size:var(--text-1);font-weight:600;color:var(--accent);
+  background:color-mix(in srgb, var(--accent) 12%, transparent);
+  border-radius:999px;padding:3px var(--space-3)
+}
+
+.app-card-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:auto;padding-top:var(--space-2)}
+.btn{
+  font-size:var(--text-1);font-weight:700;text-decoration:none;
+  border-radius:999px;padding:9px var(--space-5);display:inline-block
+}
+.btn-store{background:var(--accent);color:var(--card)}
+.btn-ghost{background:transparent;color:var(--accent);border:1.5px solid var(--line)}
+.badge-soon{
+  font-size:var(--text-1);font-weight:700;color:var(--muted);
+  background:color-mix(in srgb, var(--muted) 14%, transparent);
+  border-radius:999px;padding:9px var(--space-5)
+}
+
+.hub-footer{text-align:center;color:var(--muted);font-size:var(--text-1);margin-top:var(--space-8)}
