@@ -188,11 +188,17 @@ footer{margin-top:32px;color:var(--muted);font-size:.9rem;text-align:center}
   mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)
 }
 .hub-footer-track{
-  display:flex;align-items:center;gap:var(--space-6);width:max-content;
+  display:flex;align-items:center;width:max-content;
   animation:hub-marquee 16s linear infinite
 }
+/* margin-right (not flex `gap`) on every icon, including the last one in
+   each repeated set — gap only lands BETWEEN items, so translating by an
+   exact 50% would fall half a gap short of the true repeat point and
+   stutter once per loop. Margin applies to every item, so 50% always lines
+   up exactly with where the duplicate set starts, for any number of icons. */
 .hub-footer-track img{
   width:56px;height:56px;border-radius:22%;flex:none;object-fit:cover;
+  margin-right:var(--space-6);
   box-shadow:0 2px 6px rgba(0,0,0,.18)
 }
 @keyframes hub-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
