@@ -176,4 +176,31 @@ footer{margin-top:32px;color:var(--muted);font-size:.9rem;text-align:center}
   border-radius:999px;padding:9px var(--space-5)
 }
 
-.hub-footer{text-align:center;color:var(--muted);font-size:var(--text-1);margin-top:var(--space-8)}
+.hub-footer{
+  text-align:center;margin-top:var(--space-8);padding-top:var(--space-7);
+  border-top:1px solid var(--line)
+}
+
+/* --- hub footer: a looping strip of every app icon, then a thank-you note --- */
+.hub-footer-marquee{
+  overflow:hidden;margin-bottom:var(--space-6);
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)
+}
+.hub-footer-track{
+  display:flex;align-items:center;gap:var(--space-6);width:max-content;
+  animation:hub-marquee 16s linear infinite
+}
+.hub-footer-track img{
+  width:56px;height:56px;border-radius:22%;flex:none;object-fit:cover;
+  box-shadow:0 2px 6px rgba(0,0,0,.18)
+}
+@keyframes hub-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.hub-footer-track{animation:none}}
+
+.hub-footer-thanks{
+  font-size:var(--text-2);color:var(--ink);max-width:50ch;
+  margin:0 auto var(--space-3);line-height:1.6
+}
+.hub-footer-contact{color:var(--muted);font-size:var(--text-1);max-width:46ch;margin:0 auto var(--space-6)}
+.hub-footer-contact a{color:var(--accent)}
