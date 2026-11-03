@@ -188,7 +188,7 @@ footer{margin-top:32px;color:var(--muted);font-size:.9rem;text-align:center}
   mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)
 }
 .hub-footer-track{
-  display:flex;align-items:center;width:max-content;
+  display:flex;align-items:center;width:max-content;will-change:transform;
   animation:hub-marquee 16s linear infinite
 }
 /* margin-right (not flex `gap`) on every icon, including the last one in
