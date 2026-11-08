@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cindy Challenge — Privacy Policy</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+  body.cindy-theme{--accent:#E8632E;--gold:#2E6B4A;--bead:#2E6B4A}
+  @media (prefers-color-scheme:dark){
+    body.cindy-theme{--accent:#FF8B5C;--gold:#5FAE82;--bead:#5FAE82}
+  }
+  .rep-ring{position:relative;width:96px;height:96px;margin:0 auto 22px}
+  .rep-ring-line{
+    position:absolute;inset:0;border-radius:50%;
+    border:2px solid color-mix(in srgb, var(--bead) 55%, transparent);
+  }
+  .rep-ring-core{
+    position:absolute;inset:18px;border-radius:50%;
+    background:color-mix(in srgb, var(--accent) 70%, transparent);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(.8);opacity:.8}
+    50%{transform:scale(1);opacity:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .rep-ring-core{animation:none;transform:scale(.9)}
+  }
+</style>
+</head>
+<body class="cindy-theme">
+<main>
+<nav><a href="../index.html">Home</a><a href="index.html">Support</a><a href="privacy.html" aria-current="page">Privacy Policy</a></nav>
+
+<div class="hero">
+<div class="rep-ring" aria-hidden="true">
+  <span class="rep-ring-line"></span>
+  <span class="rep-ring-core"></span>
+</div>
+<h1>Privacy Policy</h1>
+<p class="tagline muted">Cindy Challenge &middot; Last updated: 8 November 2026</p>
+</div>
+
+<div class="card">
+<p><strong>Short version: your camera never leaves your phone. Nothing is recorded, saved, or uploaded.</strong></p>
+<h2>Camera and rep counting</h2>
+<p>When you use the camera to count reps, the video is processed live, entirely on your device, using Apple's on-device Vision framework. The app never records, saves, or transmits your camera feed anywhere, and we never see it.</p>
+<h2>What the app stores</h2>
+<p>The app saves your workout history (dates, round counts, duration) and your settings and onboarding answers (workout frequency, fitness level, age range, gender, how important health is to you) on your own iPhone only. This information never leaves your phone, is never sent to us or anyone else, and is removed when you delete the app.</p>
+<h2>Analytics and tracking</h2>
+<p>None. The app contains no analytics SDK, no advertising SDK, and does not track you across other apps or websites.</p>
+<h2>Game Center</h2>
+<p>If you choose to connect Game Center to submit a score to the leaderboard, your score and Game Center identity are handled directly by Apple under Apple's own Game Center privacy terms &mdash; we never receive or store this ourselves. Connecting Game Center is entirely optional.</p>
+<h2>Purchases</h2>
+<p>If you subscribe, your purchase is handled entirely by Apple through the App Store. We never see or store your payment details &mdash; no card number, no billing address. Apple's own privacy policy covers that information.</p>
+<h2>What the app does not do</h2>
+<ul>
+<li>It has no account or sign-in.</li>
+<li>It contains no advertising.</li>
+<li>It does not record, save, or upload your camera feed.</li>
+<li>It does not track you across other apps or websites.</li>
+</ul>
+<h2>Children</h2>
+<p>The app does not knowingly collect information from children, and does not collect any information from anyone beyond what's described above.</p>
+<h2>Changes</h2>
+<p>If this policy ever changes, the new version will be published at this address and the date above will change.</p>
+<h2>Contact</h2>
+<p>Questions? Write to <a href="mailto:indieapps.helpdesk@outlook.com">indieapps.helpdesk@outlook.com</a>.</p>
+</div>
+
+<footer>Cindy Challenge</footer>
+</main>
+</body>
+</html>

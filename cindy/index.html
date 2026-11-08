@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cindy Challenge — Support</title>
+<meta name="description" content="Support for Cindy Challenge, an iPhone app that uses your camera to auto-count reps for the CrossFit benchmark workout Cindy.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  body.cindy-theme{--accent:#E8632E;--gold:#2E6B4A;--bead:#2E6B4A}
+  @media (prefers-color-scheme:dark){
+    body.cindy-theme{--accent:#FF8B5C;--gold:#5FAE82;--bead:#5FAE82}
+  }
+  .rep-ring{position:relative;width:96px;height:96px;margin:0 auto 22px}
+  .rep-ring-line{
+    position:absolute;inset:0;border-radius:50%;
+    border:2px solid color-mix(in srgb, var(--bead) 55%, transparent);
+  }
+  .rep-ring-core{
+    position:absolute;inset:18px;border-radius:50%;
+    background:color-mix(in srgb, var(--accent) 70%, transparent);
+    animation:pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(.8);opacity:.8}
+    50%{transform:scale(1);opacity:1}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .rep-ring-core{animation:none;transform:scale(.9)}
+  }
+</style>
+</head>
+<body class="cindy-theme">
+<main>
+<nav><a href="../index.html">Home</a><a href="index.html" aria-current="page">Support</a><a href="privacy.html">Privacy Policy</a></nav>
+
+<div class="hero">
+<div class="rep-ring" aria-hidden="true">
+  <span class="rep-ring-line"></span>
+  <span class="rep-ring-core"></span>
+</div>
+<h1>Cindy Challenge</h1>
+<p class="tagline">Your iPhone camera auto-counts pull-ups, push-ups, and squats for the classic 20-minute CrossFit benchmark workout "Cindy" — no wearables, no tapping, no guessing your round count.</p>
+</div>
+
+<div class="card">
+<h2>Contact</h2>
+<p>Questions, problems, or ideas? Write to <a href="mailto:indieapps.helpdesk@outlook.com">indieapps.helpdesk@outlook.com</a>.</p>
+</div>
+
+<div class="card">
+<h2>Common questions</h2>
+<h2>How does the rep counting work?</h2>
+<p>Prop your phone up facing you, and the app uses Apple's on-device Vision framework to watch your form and automatically count pull-ups, push-ups, and squats as you move. A tracking indicator on screen confirms when it has a clear view of you before you start.</p>
+<h2>Can I try it before subscribing?</h2>
+<p>Yes. Practice mode lets you try real camera rep-counting on any of the three exercises, with no timer and no pressure, completely free.</p>
+<h2>What does the subscription unlock?</h2>
+<p>Camera auto-counting for the full timed 20-minute Cindy workout, your round history and progress chart, and the optional Game Center leaderboard. Two plans: Monthly ($4.99, includes a 3-day free trial) and Annual ($29.99). Manage or cancel anytime in your Apple ID account settings.</p>
+<h2>Is my video recorded or uploaded anywhere?</h2>
+<p>No. All camera processing happens entirely on your device. Nothing from your camera is ever recorded, saved, or sent anywhere — see the <a href="privacy.html">Privacy Policy</a> for details.</p>
+<h2>Why does round counting seem off?</h2>
+<p>For the clearest tracking, make sure your whole body is in frame, the area is well lit, and there's a plain surface behind you. The on-screen tracking indicator turns green once your pose is being picked up reliably — start your round only after it does.</p>
+<h2>Is Game Center required?</h2>
+<p>No. Connecting Game Center to submit scores to the leaderboard is entirely optional and never required to use the app.</p>
+<h2>What iPhone and iOS version do I need?</h2>
+<p>iOS 17 or later, iPhone only.</p>
+</div>
+
+<footer>Cindy Challenge &middot; Requires iOS 17 or later &middot; iPhone</footer>
+</main>
+</body>
+</html>
