@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frog on Plate — Support</title>
+<meta name="description" content="Support for Frog on Plate, an iPhone planner: plan tomorrow tonight and eat your frog first.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  body.frog-theme{--accent:#863423;--gold:#4F7A3A;--bead:#4F7A3A}
+  @media (prefers-color-scheme:dark){
+    body.frog-theme{--accent:#E08A72;--gold:#8DBB6E;--bead:#8DBB6E}
+  }
+  .plate{position:relative;width:96px;height:96px;margin:0 auto 22px}
+  .plate-rim{position:absolute;inset:0;border-radius:50%;border:2px solid color-mix(in srgb, var(--bead) 55%, transparent)}
+  .plate-frog{position:absolute;inset:26px;border-radius:50%;background:color-mix(in srgb, var(--bead) 80%, transparent);animation:hop 2.2s ease-in-out infinite}
+  @keyframes hop{0%,70%,100%{transform:translateY(0)}80%{transform:translateY(-8px)}}
+  @media (prefers-reduced-motion:reduce){.plate-frog{animation:none}}
+</style>
+</head>
+<body class="frog-theme">
+<main>
+<nav><a href="../index.html">Home</a><a href="index.html" aria-current="page">Support</a><a href="privacy.html">Privacy Policy</a></nav>
+
+<div class="hero">
+<div class="plate" aria-hidden="true"><span class="plate-rim"></span><span class="plate-frog"></span></div>
+<h1>Frog on Plate</h1>
+<p class="tagline">A calm iPhone planner for to-dos and reminders. Plan tomorrow tonight, then tackle your most important task (your "frog") first thing.</p>
+</div>
+
+<div class="card">
+<h2>Contact</h2>
+<p>Questions, problems, or ideas? Write to <a href="mailto:indieapps.helpdesk@outlook.com">indieapps.helpdesk@outlook.com</a>.</p>
+</div>
+
+<div class="card">
+<h2>Common questions</h2>
+<h2>How do I add a to-do or reminder?</h2>
+<p>Tap the <strong>＋</strong> next to the title on the To-Dos or Reminders list. Tap an existing row to edit it.</p>
+<h2>How do I complete or delete something?</h2>
+<p>Swipe a row right to complete it (or dismiss a reminder); swipe left to delete it. A short Undo message appears after deleting.</p>
+<h2>Can I put my list in my own order?</h2>
+<p>Touch and hold a row, then drag it. This switches the list to "My order".</p>
+<h2>How does evening planning work?</h2>
+<p>Pick a planning time in Settings &rsaquo; Daily planning. At that time a reminder nudges you to set up tomorrow's to-dos, so the day starts with a plan.</p>
+<h2>Does it have a home screen widget?</h2>
+<p>Premium includes home-screen widgets. Add the Frog on Plate widget from your iPhone's home screen (Edit &rsaquo; Add Widget &rsaquo; search "Frog on Plate").</p>
+<h2>Can I change the colours or text size?</h2>
+<p>Open Settings. Appearance can follow your phone, or be set to Light or Dark, each with its own colour tone. Text size has 5 steps, on top of your iPhone's own setting.</p>
+<h2>Where is my data stored?</h2>
+<p>Only on your iPhone. There is no account and no task-data server. See the <a href="privacy.html">Privacy Policy</a>.</p>
+<h2>Does the app cost anything?</h2>
+<p>To-dos, reminders, tomorrow planning and one evening reminder are free. Premium adds follow-up nudges, Logs and home-screen widgets, as a monthly or yearly subscription or a one-time Lifetime purchase. Current prices are shown in the app before you confirm with Apple.</p>
+<h2>How do I restore a purchase?</h2>
+<p>Open Settings &rsaquo; Premium &rsaquo; Restore Purchases, signed in with the Apple Account you used to buy.</p>
+<h2>How do I cancel a subscription?</h2>
+<p>On your iPhone, open Settings, tap your name, then Subscriptions. Deleting the app does not cancel a subscription. Lifetime is a one-time purchase with nothing to cancel.</p>
+<p><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (Apple Standard EULA)</a></p>
+</div>
+
+<footer>Frog on Plate &middot; Requires iOS 16.4 or later &middot; iPhone</footer>
+</main>
+</body>
+</html>
