@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shared Practice Plan — Koenawin Pati</title>
+<meta name="description" content="A chanting practice plan shared from Koenawin Pati. Add it to the app in one tap.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<style>
+/* Self-contained: copied from the Koenawin support pages so the shared site stylesheet can change freely. */
+:root{--ground:#EDEAE3;--card:#F6F4EE;--ink:#2E2A22;--muted:#6E6558;--accent:#7B1113;--line:#D9D4C9;--shadow1:#C7C1B4;--shadow2:#FFFFFF}
+@media (prefers-color-scheme:dark){:root{--ground:#2A2621;--card:#322D27;--ink:#EDE7DC;--muted:#A79D8D;--accent:#E8C46A;--line:#3C352C;--shadow1:#1E1B17;--shadow2:#34302A}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Myanmar Sangam MN","Noto Sans Myanmar",system-ui,sans-serif;line-height:1.75;font-size:17px}
+main{max-width:720px;margin:0 auto;padding:32px 18px 64px}
+.card{background:var(--ground);border-radius:26px;padding:22px 22px 8px;margin:18px 0;box-shadow:8px 8px 18px var(--shadow1),-8px -8px 18px var(--shadow2)}
+h1{font-size:2rem;line-height:1.4;margin:.2em 0 .1em;color:var(--accent)}
+h2{font-size:1.25rem;line-height:1.5;margin:1.2em 0 .3em}
+p,li{margin:.4em 0}
+.muted{color:var(--muted)}
+a{color:var(--accent)}
+nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+nav a{font-weight:600;text-decoration:none}
+footer{margin-top:28px;color:var(--muted);font-size:.9rem}
+.btn{display:block;text-align:center;font-weight:600;text-decoration:none;border-radius:16px;padding:14px 18px;margin:12px 0}
+.btn.primary{background:var(--accent);color:var(--ground)}
+.btn.secondary{border:2px solid var(--accent);color:var(--accent)}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:8px 0 16px}
+dt{color:var(--muted)}
+dd{margin:0;overflow-wrap:anywhere}
+.eyebrow{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+#plan-name{overflow-wrap:anywhere}
+.small{font-size:.9rem}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<nav><a href="/koenawin/index.html">Support</a><a href="/koenawin/privacy.html">Privacy Policy</a></nav>
+
+<div id="loading" class="card"><p>Opening the plan…</p></div>
+
+<div id="plan" class="card" hidden>
+  <p class="eyebrow">A plan to practice</p>
+  <h1 id="plan-name"></h1>
+  <p class="muted" id="plan-creator"></p>
+  <dl>
+    <dt>Practice days</dt><dd id="plan-length"></dd>
+    <dt>Schedule</dt><dd id="plan-schedule"></dd>
+    <dt>Chant</dt><dd id="plan-chant"></dd>
+    <dt>Rounds</dt><dd id="plan-rounds"></dd>
+    <dt>Beads per round</dt><dd id="plan-beads"></dd>
+  </dl>
+  <a id="open-app" class="btn primary" href="#">Add to Koenawin Pati</a>
+  <a class="btn secondary" href="https://apps.apple.com/app/id6814082122">Get Koenawin Pati on the App Store</a>
+  <p class="muted small">Don’t have the app yet? Install it first, then come back to this page and tap “Add to Koenawin Pati”. You choose your own start date, and your copy has fresh progress.</p>
+</div>
+
+<div id="error" class="card" hidden>
+  <h2>This plan link can’t be opened</h2>
+  <p>The link may be incomplete. Ask the person who shared it to send it again, or share it as a plan file from the app.</p>
+  <a class="btn secondary" href="https://apps.apple.com/app/id6814082122">Get Koenawin Pati on the App Store</a>
+</div>
+
+<footer>Koenawin Pati &middot; The plan is carried inside this link and read only on your device. Nothing is stored on a server.</footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  // Must match SharedPlanLink / SharedPlanTemplate in the app (Model/CommunityModels.swift).
+  var CHANTS = {1: "Arahaṃ", 2: "Sammāsambuddho", 3: "Vijjācaraṇasampanno", 4: "Sugato", 5: "Lokavidū",
+    6: "Anuttaro purisadammasārathi", 7: "Satthā devamanussānaṃ", 8: "Buddho", 9: "Bhagavā"};
+  var WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var MAX_PAYLOAD = 60000, MAX_JSON = 256000;
+
+  function show(id) {
+    ["loading", "plan", "error"].forEach(function (x) { document.getElementById(x).hidden = x !== id; });
+  }
+  function text(id, value) { document.getElementById(id).textContent = String(value); } // never innerHTML
+  function isInt(n, lo, hi) { return Number.isInteger(n) && n >= lo && n <= hi; }
+
+  function schedule(freq) {
+    if (!freq || typeof freq !== "object") return null;
+    if ("daily" in freq) return "Every day";
+    if (freq.everyNDays && isInt(freq.everyNDays._0, 1, 3660)) return freq.everyNDays._0 === 1 ? "Every day" : "Every " + freq.everyNDays._0 + " days";
+    if (freq.weekdays && Array.isArray(freq.weekdays._0)) {
+      var days = freq.weekdays._0.filter(function (d) { return isInt(d, 0, 6); }).sort();
+      if (!days.length) return null;
+      if (days.length === 7) return "Every day";
+      if (days.join() === "0,1,2,3,4") return "Weekdays · Monday–Friday";
+      if (days.join() === "5,6") return "Weekends · Saturday & Sunday";
+      return days.map(function (d) { return WEEKDAYS[d]; }).join(", ");
+    }
+    return null;
+  }
+
+  async function decode(payload) {
+    var b64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+    b64 += "===".slice((b64.length + 3) % 4);
+    var bytes = Uint8Array.from(atob(b64), function (c) { return c.charCodeAt(0); });
+    var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+    var reader = stream.getReader(), chunks = [], total = 0;
+    for (;;) {
+      var r = await reader.read();
+      if (r.done) break;
+      total += r.value.length;
+      if (total > MAX_JSON) throw new Error("too large");
+      chunks.push(r.value);
+    }
+    return JSON.parse(new TextDecoder().decode(await new Blob(chunks).arrayBuffer()));
+  }
+
+  async function main() {
+    var payload = location.hash.slice(1);
+    if (!payload || payload.length > MAX_PAYLOAD || !/^[A-Za-z0-9_-]+$/.test(payload)) return show("error");
+    var file;
+    try { file = await decode(payload); } catch (e) { return show("error"); }
+    var p = file && file.plan, c = file && file.creator;
+    var sched = p && schedule(p.frequency);
+    if (!file || file.format !== "koenawin.plan" || file.version !== 1 || !p || !c || !sched ||
+        typeof p.name !== "string" || !p.name.trim() || p.name.length > 100 ||
+        !isInt(p.rounds, 1, 1000) || !isInt(p.beadsPerRound, 1, 1000) ||
+        typeof c.creatorName !== "string" || c.creatorName.length > 60) return show("error");
+
+    var varies = p.sameEveryDay === false && p.dayOverrides && Object.keys(p.dayOverrides).length > 0;
+    var chant = CHANTS[p.virtueID] || (typeof p.customTitle === "string" && p.customTitle.trim()) || "Your own chant";
+    var total = p.totalOccurrences;
+    var length = isInt(total, 1, 3660)
+      ? total + ("daily" in p.frequency ? (total === 1 ? " day" : " days") : (total === 1 ? " practice day" : " practice days"))
+      : "Ongoing · No end date";
+
+    text("plan-name", p.name);
+    text("plan-creator", "Created by " + c.creatorName);
+    text("plan-length", length);
+    text("plan-schedule", sched);
+    text("plan-chant", varies ? "Varies by day" : chant);
+    text("plan-rounds", varies ? "Varies by day" : p.rounds);
+    text("plan-beads", p.beadsPerRound);
+    document.getElementById("open-app").href = "koenawin://plan#" + payload;
+    document.title = p.name + " — Koenawin Pati";
+    show("plan");
+  }
+  main();
+})();
+</script>
+</body>
+</html>
